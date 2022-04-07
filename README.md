@@ -1,7 +1,7 @@
 # Website-My-DevOps
 "My DevOps", takes inspiration from management style websites such as Trello, Azure DevOps & Monday. 
 
-In contrast to those tools, you can think of "My DevOps" as a way for me to track: 
+In contrast to those tools,"My DevOps" was created for myself as a way for me to track: 
 - What I want to learn
 - What I intend to learn
 - What I've learnt
