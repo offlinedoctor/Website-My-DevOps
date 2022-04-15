@@ -65,25 +65,27 @@ class JSONList extends React.Component
 {	
 	render()
 	{
-		return(
-				<div>
-				{	
-					ProductOBJ[1].map((eachIteration, index) =>
-					{
-						if (index != 0)
-						{
-							return (
-							<div>
-								<h1> {eachIteration.heading} </h1>
-								<h1> {eachIteration.description} </h1>
-								<h1> {eachIteration.link} </h1>
-								<h1> {eachIteration.status} </h1>
-							</div>)
-						}
-					})
+		let menuItems = [];
+		
+		for (let i = 0; i < Object.keys(ProductOBJ).length; i++)
+		{
+			ProductOBJ[i].map((eachIteration, index) =>
+			{
+				if (index != 0)
+				{
+					console.log(eachIteration);
+					menuItems.push(
+						<div> 
+							<h1> {eachIteration.heading} </h1>
+							<h2> {eachIteration.description} </h2>
+							<h2> {eachIteration.link} </h2>
+							<h2> {eachIteration.status} </h2>
+							<h2> {eachIteration.tag} </h2>
+						</div>);
 				}
-				</div>
-		);
+			});
+		}
+		return menuItems;
 	}
 }
 
