@@ -66,13 +66,23 @@ class JSONList extends React.Component
 	render()
 	{
 		return(
-			<>
 				<div>
-				{
-					<h1> hello </h1>
+				{	
+					ProductOBJ[1].map((eachIteration, index) =>
+					{
+						if (index != 0)
+						{
+							return (
+							<div>
+								<h1> {eachIteration.heading} </h1>
+								<h1> {eachIteration.description} </h1>
+								<h1> {eachIteration.link} </h1>
+								<h1> {eachIteration.status} </h1>
+							</div>)
+						}
+					})
 				}
 				</div>
-			</>		
 		);
 	}
 }
