@@ -66,26 +66,54 @@ class JSONList extends React.Component
 	render()
 	{
 		let menuItems = [];
+		let temporaryArray = [];
+		let TemporaryArray2 = [];
 		
 		for (let i = 0; i < Object.keys(ProductOBJ).length; i++)
 		{
+			temporaryArray = [];
+			TemporaryArray2 = [];
 			ProductOBJ[i].map((eachIteration, index) =>
 			{
+				if (index == 0)
+				{
+					//menuItems.push(<h1 style={{display: "flex", flexDirection: "row"}}>{eachIteration}</h1>);
+				}
+								
 				if (index != 0)
 				{
 					console.log(eachIteration);
-					menuItems.push(
-						<div> 
-							<h1> {eachIteration.heading} </h1>
-							<h2> {eachIteration.description} </h2>
-							<h2> {eachIteration.link} </h2>
-							<h2> {eachIteration.status} </h2>
-							<h2> {eachIteration.tag} </h2>
-						</div>);
+					temporaryArray.push(
+						<> 
+							<h5> {eachIteration.heading} </h5>
+							<h5> {eachIteration.description} </h5>
+							<h5> {eachIteration.link} </h5>
+							<h5> {eachIteration.status} </h5>
+							<h5> {eachIteration.tag} </h5>
+						</>);
 				}
-			});
+			});	
+			
+			TemporaryArray2.push
+			(
+				<div style={{display: "flex", flexDirection: "column"}}> 
+				{
+					temporaryArray.map((eachIteration) =>
+					{
+						return <h1> {eachIteration} </h1>
+					})
+				}			
+				</div>
+			)
+
+			menuItems.push(TemporaryArray2);
+			
 		}
-		return menuItems;
+		return(
+				<h1 style={{display: "flex", flexDirection: "row"}}>
+					{menuItems}
+				</h1>
+		);
 	}
 }
 
