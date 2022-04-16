@@ -68,6 +68,12 @@ function myFunction()
 	}
 }
 
+function GenerateRandomColour()
+{
+	const ColourArray = ["#42a5f5", "#5c6bc0", "#7e57c2", "#ff1744", "#f50057", "#8e24aa"];
+	return ColourArray[Math.floor(Math.random() * ColourArray.length)];
+}
+
 class JSONList extends React.Component
 {	
 	render()
@@ -78,6 +84,7 @@ class JSONList extends React.Component
 		
 		for (let i = 0; i < Object.keys(ProductOBJ).length; i++)
 		{
+			var randomColour = GenerateRandomColour();
 			temporaryArray = [];
 			TemporaryArray2 = [];
 			ProductOBJ[i].map((eachIteration, index) =>
@@ -89,19 +96,19 @@ class JSONList extends React.Component
 								
 				if (index != 0)
 				{
-					console.log(eachIteration);
+					//console.log(eachIteration);
 					temporaryArray.push(
-						<Card style={{marginBottom: "50px"}}>
+						<Card style={{marginTop: "25px", backgroundColor: randomColour}}>
 							<CardContent>
-								<Typography gutterBottom variant="h5" component="div">
+								<Typography gutterBottom variant="h5" component="div" style={{color: "white", textAlign: "left"}}>
 									{eachIteration.heading}
 								</Typography>
-								<Typography  variant="body2" color="text.secondary">
+								<Typography  variant="body2" color="text.secondary" style={{color: "white", textAlign: "left"}}>
 									{eachIteration.description}
 								</Typography>
 							</CardContent>
 							<CardActions>
-								<Button href={eachIteration.link}>Source</Button>
+								<Button variant="outlined" style={{color: "black", background: "white"}} href={eachIteration.link}>Source</Button>
 							</CardActions>
 						</Card>);
 				}
@@ -110,12 +117,13 @@ class JSONList extends React.Component
 			TemporaryArray2.push
 			(
 				<div style={{display: "flex", flexDirection: "column", height: "500px", overflowY: "auto", marginLeft: "10px", marginRight: "10px"}}> 
+				<div style={{position: "fixed"}}> {ProductOBJ[i][1].tag} </div>
 				{
 					temporaryArray.map((eachIteration) =>
 					{
 						return <div style={{}}> {eachIteration} </div>
 					})
-				}			
+				}
 				</div>
 			)
 
