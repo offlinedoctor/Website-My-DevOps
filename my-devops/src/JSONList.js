@@ -1,5 +1,11 @@
 import React from 'react';
 import DevOpsTracker from './DevOpsTracker.json';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 var TagList = [];
 
@@ -84,13 +90,19 @@ class JSONList extends React.Component
 				{
 					console.log(eachIteration);
 					temporaryArray.push(
-						<> 
-							<h5> {eachIteration.heading} </h5>
-							<h5> {eachIteration.description} </h5>
-							<h5> {eachIteration.link} </h5>
-							<h5> {eachIteration.status} </h5>
-							<h5> {eachIteration.tag} </h5>
-						</>);
+						<Card>
+							<CardContent>
+								<Typography gutterBottom variant="h5" component="div">
+									{eachIteration.heading}
+								</Typography>
+								<Typography  variant="body2" color="text.secondary">
+									{eachIteration.description}
+								</Typography>
+							</CardContent>
+							<CardActions>
+								<Button href={eachIteration.link}>Source</Button>
+							</CardActions>
+						</Card>);
 				}
 			});	
 			
@@ -100,7 +112,7 @@ class JSONList extends React.Component
 				{
 					temporaryArray.map((eachIteration) =>
 					{
-						return <h1> {eachIteration} </h1>
+						return <div> {eachIteration} </div>
 					})
 				}			
 				</div>
