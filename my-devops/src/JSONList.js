@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import JSONListStyle from './JSONList.css';
 
 var TagList = [];
 
@@ -90,7 +91,7 @@ class JSONList extends React.Component
 				{
 					console.log(eachIteration);
 					temporaryArray.push(
-						<Card>
+						<Card style={{marginBottom: "50px"}}>
 							<CardContent>
 								<Typography gutterBottom variant="h5" component="div">
 									{eachIteration.heading}
@@ -108,11 +109,11 @@ class JSONList extends React.Component
 			
 			TemporaryArray2.push
 			(
-				<div style={{display: "flex", flexDirection: "column"}}> 
+				<div style={{display: "flex", flexDirection: "column", height: "500px", overflowY: "auto", marginLeft: "10px", marginRight: "10px"}}> 
 				{
 					temporaryArray.map((eachIteration) =>
 					{
-						return <div> {eachIteration} </div>
+						return <div style={{}}> {eachIteration} </div>
 					})
 				}			
 				</div>
