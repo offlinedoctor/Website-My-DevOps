@@ -120,7 +120,7 @@ class JSONList extends React.Component
 			TemporaryArray2.push
 			(
 				<div style={{backgroundColor: "#eeeeee", marginLeft: "10px", borderRadius: "15px"}}>
-					<div> {ProductOBJ[i][1].tag.toUpperCase()} </div>
+					<div style={{textAlign: "left", marginLeft: "10px", color: "rgba(0,0,0,1)"}}> {ProductOBJ[i][1].tag.toUpperCase()} </div>
 					<div style={{display: "flex", flexDirection: "column", height: "500px", overflowY: "auto", marginLeft: "10px", marginRight: "10px"}}> 
 					{
 						temporaryArray.map((eachIteration) =>
