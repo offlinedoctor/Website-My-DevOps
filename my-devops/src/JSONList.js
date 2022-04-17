@@ -108,7 +108,7 @@ class JSONList extends React.Component
 								</Typography>
 							</CardContent>
 							<CardActions>
-								<Button variant="outlined" style={{color: "black", background: "white"}} href={eachIteration.link}>Source</Button>
+								<Button variant="contained" style={{color: "black", background: "white"}} href={eachIteration.link}>Source</Button>
 							</CardActions>
 							<Typography  variant="body2" color="text.secondary" style={{color: "white", textAlign: "left"}}>
 									Status: {eachIteration.status}
@@ -119,8 +119,8 @@ class JSONList extends React.Component
 			
 			TemporaryArray2.push
 			(
-				<div style={{backgroundColor: "#eeeeee", marginLeft: "10px", borderRadius: "15px"}}>
-					<div style={{textAlign: "left", marginLeft: "10px", color: "rgba(0,0,0,1)"}}> {ProductOBJ[i][1].tag.toUpperCase()} </div>
+				<div style={{backgroundColor: "rgba(238,238,238,0.5)", marginLeft: "10px", borderRadius: "15px"}}>
+					<div style={{textAlign: "left", marginLeft: "10px", marginRight: "10px", fontFamily: "robotoLight"}}> {ProductOBJ[i][1].tag.toUpperCase()} </div>
 					<div style={{display: "flex", flexDirection: "column", height: "500px", overflowY: "auto", marginLeft: "10px", marginRight: "10px"}}> 
 					{
 						temporaryArray.map((eachIteration) =>

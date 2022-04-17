@@ -5,10 +5,12 @@ import JSONList from './JSONList.js';
 function App() 
 {
   return (
-    <div className="App" style={{marginTop: "50px", background: "rgba(224, 244, 244, 0.5)", paddingBottom: "150px", paddingRight: "10px", borderRadius: "10px"}}>
+	<div>
 		<Window/>
-		<JSONList/>
-    </div>
+		<div className="App" style={{marginTop: "25px", background: "rgba(224, 244, 244, 0.5)", paddingRight: "10px", borderRadius: "10px", overflowX: "auto"}}>
+			<JSONList/>
+		</div>
+	</div>
   );
 }
 
