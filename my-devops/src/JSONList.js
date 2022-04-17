@@ -98,7 +98,7 @@ class JSONList extends React.Component
 				{
 					//console.log(eachIteration);
 					temporaryArray.push(
-						<Card style={{marginTop: "25px", backgroundColor: randomColour}}>
+						<Card style={{marginBottom: "25px", backgroundColor: randomColour}}>
 							<CardContent>
 								<Typography gutterBottom variant="h5" component="div" style={{color: "white", textAlign: "left"}}>
 									{eachIteration.heading}
@@ -110,13 +110,16 @@ class JSONList extends React.Component
 							<CardActions>
 								<Button variant="outlined" style={{color: "black", background: "white"}} href={eachIteration.link}>Source</Button>
 							</CardActions>
+							<Typography  variant="body2" color="text.secondary" style={{color: "white", textAlign: "left"}}>
+									Status: {eachIteration.status}
+							</Typography>
 						</Card>);
 				}
 			});	
 			
 			TemporaryArray2.push
 			(
-				<div>
+				<div style={{backgroundColor: "#eeeeee", marginLeft: "10px", borderRadius: "15px"}}>
 					<div> {ProductOBJ[i][1].tag.toUpperCase()} </div>
 					<div style={{display: "flex", flexDirection: "column", height: "500px", overflowY: "auto", marginLeft: "10px", marginRight: "10px"}}> 
 					{
