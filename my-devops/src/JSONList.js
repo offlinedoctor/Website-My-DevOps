@@ -70,7 +70,7 @@ function myFunction()
 
 function GenerateRandomColour()
 {
-	const ColourArray = ["#42a5f5", "#5c6bc0", "#7e57c2", "#ff1744", "#f50057", "#8e24aa"];
+	const ColourArray = ["#4a148c", "#4a148c", "#d50000", "#f50057", "#76ff03", "#00c853", "#42a5f5", "#5c6bc0", "#7e57c2", "#ff1744", "#f50057", "#8e24aa", "#2196f3", "#0d47a1", "#311b92"];
 	return ColourArray[Math.floor(Math.random() * ColourArray.length)];
 }
 
@@ -116,14 +116,16 @@ class JSONList extends React.Component
 			
 			TemporaryArray2.push
 			(
-				<div style={{display: "flex", flexDirection: "column", height: "500px", overflowY: "auto", marginLeft: "10px", marginRight: "10px"}}> 
-				<div style={{position: "fixed"}}> {ProductOBJ[i][1].tag} </div>
-				{
-					temporaryArray.map((eachIteration) =>
+				<div>
+					<div> {ProductOBJ[i][1].tag.toUpperCase()} </div>
+					<div style={{display: "flex", flexDirection: "column", height: "500px", overflowY: "auto", marginLeft: "10px", marginRight: "10px"}}> 
 					{
-						return <div style={{}}> {eachIteration} </div>
-					})
-				}
+						temporaryArray.map((eachIteration) =>
+						{
+							return <div style={{}}> {eachIteration} </div>
+						})
+					}
+					</div>
 				</div>
 			)
 
