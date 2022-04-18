@@ -1,5 +1,5 @@
 import React from 'react';
-import DevOpsTracker from './DevOpsTracker.json';
+//import DevOpsTracker from './DevOpsTracker.json';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,48 +9,17 @@ import Typography from '@mui/material/Typography';
 import JSONListStyle from './JSONList.css';
 
 var TagList = [];
+var DevOpsTracker = new Object();
+var ProductOBJ = new Object();
 
 //Filter Tags, each time we find a unique one, add to our array
-DevOpsTracker.List.map(eachIteration =>
+
+async function FetchJSON()
 {
-	if(TagList.includes(eachIteration.tag))
-	{
-	}
-	else
-	{
-		TagList.push(eachIteration.tag);
-	}
-});
-
-//remove duplicates
-TagList = [... new Set(TagList)];
-
-//console.log(TagList);
-
-const ProductOBJ = new Object();
-
-//Store each tag in our array
-TagList.map((eachTag, index) =>
-{
-		//console.log(eachTag);
-		ProductOBJ[index] = [eachTag];
-});
-
-//Do a loop in a loop, and extract each element under the tag
-TagList.map((eachTag, index) =>
-{
-	DevOpsTracker.List.map(eachIteration => 
-    {
-    	if (eachTag == eachIteration.tag)
-        {
-       		ProductOBJ[index].push(eachIteration);  
-        }
-    });
-});
-
-//if we did ProductOBJ.name = eachTag, we'd get JSON as name: "eachTag"
-//console.log(ProductOBJ);
-//console.log(Object.keys(ProductOBJ).length);
+	var response = await fetch('/DevOpsTracker.json');
+	var storedJSON = await response.json();
+	return storedJSON;
+}
 
 //Example of how to Parse it.
 function myFunction()
@@ -80,8 +49,66 @@ function GenerateRandomColour()
 
 class JSONList extends React.Component
 {	
+	
+	constructor()
+	{
+		super()
+		
+		this.state =
+		{
+			StateArrayProductOBJ: new Object()
+		}
+	}
+
+	componentDidMount()
+	{
+		FetchJSON().then(result =>
+		{
+			DevOpsTracker = result;
+			
+			DevOpsTracker.List.map(eachIteration =>
+			{
+				if(TagList.includes(eachIteration.tag))
+				{
+				}
+				else
+				{
+					TagList.push(eachIteration.tag);
+				}
+			});
+
+			//remove duplicates
+			TagList = [... new Set(TagList)];
+
+			//console.log(TagList);
+
+			//Store each tag in our array
+			TagList.map((eachTag, index) =>
+			{
+					//console.log(eachTag);
+					ProductOBJ[index] = [eachTag];
+			});
+
+			//Do a loop in a loop, and extract each element under the tag
+			TagList.map((eachTag, index) =>
+			{
+				DevOpsTracker.List.map(eachIteration => 
+				{
+					if (eachTag == eachIteration.tag)
+					{
+						ProductOBJ[index].push(eachIteration);  
+					}
+				});
+			});
+			//console.log(ProductOBJ);
+			this.setState({StateArrayProductOBJ: ProductOBJ});
+		});
+	}
+
 	render()
 	{
+		console.log(ProductOBJ);
+		
 		let menuItems = [];
 		let temporaryArray = [];
 		let TemporaryArray2 = [];
