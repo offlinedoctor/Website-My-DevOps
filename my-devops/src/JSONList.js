@@ -10,14 +10,16 @@ import JSONListStyle from './JSONList.css';
 
 var TagList = [];
 
+//Filter Tags, each time we find a unique one, add to our array
 DevOpsTracker.List.map(eachIteration =>
 {
 	if(TagList.includes(eachIteration.tag))
-  {
-  }
-  {
-    TagList.push(eachIteration.tag);
-  }
+	{
+	}
+	else
+	{
+		TagList.push(eachIteration.tag);
+	}
 });
 
 //remove duplicates
@@ -27,19 +29,21 @@ TagList = [... new Set(TagList)];
 
 const ProductOBJ = new Object();
 
+//Store each tag in our array
 TagList.map((eachTag, index) =>
 {
 		//console.log(eachTag);
 		ProductOBJ[index] = [eachTag];
 });
 
+//Do a loop in a loop, and extract each element under the tag
 TagList.map((eachTag, index) =>
 {
-		DevOpsTracker.List.map(eachIteration => 
+	DevOpsTracker.List.map(eachIteration => 
     {
-    		if (eachTag == eachIteration.tag)
+    	if (eachTag == eachIteration.tag)
         {
-        		ProductOBJ[index].push(eachIteration);  
+       		ProductOBJ[index].push(eachIteration);  
         }
     });
 });
@@ -48,7 +52,7 @@ TagList.map((eachTag, index) =>
 //console.log(ProductOBJ);
 //console.log(Object.keys(ProductOBJ).length);
 
-
+//Example of how to Parse it.
 function myFunction()
 {
 	for (let i = 0; i < Object.keys(ProductOBJ).length; i++)
@@ -137,9 +141,11 @@ class JSONList extends React.Component
 			
 		}
 		return(
-				<h1 style={{display: "flex", flexDirection: "row"}}>
-					{menuItems}
-				</h1>
+				<div>
+					<h1 style={{display: "flex", flexDirection: "row"}}>
+						{menuItems}
+					</h1>
+				</div>
 		);
 	}
 }

@@ -1,14 +1,17 @@
 import React from 'react';
 import FontStyle from './FontStyle.css';
+//import AddToList from './AddToList.js';
 
 class Window extends React.Component 
 {
 	render()
 	{
 		return(
-			<h1 style={{color: "white", fontFamily: "robotoLight", textAlign: "center"}}> 
-				My DevOps 
-			</h1>
+			<div>
+				<h1 style={{color: "white", fontFamily: "robotoLight", textAlign: "left", background: "rgba(238,238,238,0.5)", paddingTop: "15px", paddingBottom: "15px", paddingLeft: "15px"}}> 
+					My DevOps
+				</h1>	
+			</div>
 		);
 	}
 }
