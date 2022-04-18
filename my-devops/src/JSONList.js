@@ -16,9 +16,12 @@ var ProductOBJ = new Object();
 
 async function FetchJSON()
 {
-	var response = await fetch('/DevOpsTracker.json');
-	var storedJSON = await response.json();
-	return storedJSON;
+	fetch('http://localhost:3001/GetJSON')
+	.then((response) => response.json())
+	.then((jsonObj) => 
+	{
+		return jsonObj;
+	});
 }
 
 //Example of how to Parse it.
@@ -62,9 +65,11 @@ class JSONList extends React.Component
 
 	componentDidMount()
 	{
-		FetchJSON().then(result =>
-		{
-			DevOpsTracker = result;
+		fetch('http://localhost:3001/GetJSON')
+		.then((response) => response.json())
+		.then((jsonObj) => 
+		{			
+			DevOpsTracker = jsonObj;
 			
 			DevOpsTracker.List.map(eachIteration =>
 			{
@@ -106,9 +111,7 @@ class JSONList extends React.Component
 	}
 
 	render()
-	{
-		console.log(ProductOBJ);
-		
+	{			
 		let menuItems = [];
 		let temporaryArray = [];
 		let TemporaryArray2 = [];
