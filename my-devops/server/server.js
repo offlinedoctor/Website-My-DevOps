@@ -4,6 +4,10 @@ var app = express();
 const fs = require('fs');
 let cors = require("cors");
 app.use(cors());
+var bodyParser = require('body-parser');
+app.use(bodyParser());
+
+var sentValue;
 
 var server = app.listen(3001, onServerStart);
 
@@ -12,13 +16,64 @@ function onServerStart()
     console.log("Server Started");
 }
 
-let rawdata = fs.readFileSync('DevOpsTracker.json');
-let data = JSON.parse(rawdata);
-console.log(data.List);
+var newJSON = 
+{
+	"heading": "React Circular Slider",
+	"description": "Use an interactive slider in React",
+	"link": "https://www.npmjs.com/package/@fseehawer/react-circular-slider",
+	"status": "3",
+	"tag": "reactnew"
+};
+
+//data.List.push(newJSON);
+//console.log(data.List);
+
+//json = JSON.stringify(data, null, "\t");
+//fs.writeFile('DevOpsTracker.json', json, function(err, result) 
+//{
+//     if(err) console.log('error', err);
+//});
 
 app.get("/GetJSON", onJSONStart);
 
 function onJSONStart(req, res)
 {
+	let rawdata = fs.readFileSync('DevOpsTracker.json');
+	let data = JSON.parse(rawdata);
 	res.send(rawdata);
 }
+
+app.post("/RemoveFromJSON", removeFromJSON);
+
+function removeFromJSON(req, res)
+{
+	sentValue = req.body.Heading;
+	
+	console.log(req.body.Heading)
+	let rawdata1 = fs.readFileSync('DevOpsTracker.json');
+	let data = JSON.parse(rawdata1);
+		
+	data.List = data.List.filter(RemoveItemFromList);
+	
+	
+	console.log(data);
+	
+	//console.log(JSON.stringify(appendedString, null, "\t"));
+	
+	//var o = data.List.filter(x => x!== null);
+	//console.log(o);
+		
+	fs.writeFileSync('DevOpsTracker.json', JSON.stringify(data, null, "\t"));
+	//let rawdata2 = fs.readFileSync('DevOpsTracker.json');
+	//res.send(rawdata2);
+	res.sendStatus(200);
+}
+
+function RemoveItemFromList(eachValue)
+{
+	if (eachValue.heading != sentValue)
+	{
+		return eachValue;
+	}
+}
+

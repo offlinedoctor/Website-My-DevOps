@@ -61,6 +61,32 @@ class JSONList extends React.Component
 		{
 			StateArrayProductOBJ: new Object()
 		}
+		
+		this.DeleteOption = this.DeleteOption.bind(this);
+	}
+	
+	DeleteOption(event)
+	{
+		var stringID = {Heading: event.target.id.toString()};
+		
+		const options =
+		{
+            method: "POST",
+            headers:
+            {
+                "Content-Type" : "application/JSON"
+            },
+            body: JSON.stringify(stringID)
+        };
+		
+		console.log(options);
+		
+		fetch('http://localhost:3001/RemoveFromJSON', options)
+		.then((response) => response.json())
+		.then((jsonObj) => 
+		{
+			;
+		});
 	}
 
 	componentDidMount()
@@ -73,13 +99,13 @@ class JSONList extends React.Component
 			
 			DevOpsTracker.List.map(eachIteration =>
 			{
-				if(TagList.includes(eachIteration.tag))
-				{
-				}
-				else
-				{
-					TagList.push(eachIteration.tag);
-				}
+					if(TagList.includes(eachIteration.tag))
+					{
+					}
+					else
+					{
+						TagList.push(eachIteration.tag);
+					}
 			});
 
 			//remove duplicates
@@ -143,7 +169,7 @@ class JSONList extends React.Component
 							</CardContent>
 							<CardActions>
 								<Button variant="contained" style={{color: "black", background: "white"}} href={eachIteration.link}>Source</Button>
-								<Button variant="contained" style={{color: "white", background: "red"}}>X</Button>
+								<Button variant="contained" id={eachIteration.heading} onClick={this.DeleteOption} style={{color: "white", background: "red"}}>X</Button>
 							</CardActions>
 							<Typography  variant="body2" color="text.secondary" style={{color: "white", textAlign: "left"}}>
 									Status: {eachIteration.status}
