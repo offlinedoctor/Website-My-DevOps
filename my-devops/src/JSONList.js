@@ -67,7 +67,8 @@ class JSONList extends React.Component
 	
 	DeleteOption(event)
 	{
-		var stringID = {Heading: event.target.id.toString()};
+		var stringID = {heading: event.target.id.toString()};
+		ProductOBJ = new Object();
 		
 		const options =
 		{
@@ -78,19 +79,22 @@ class JSONList extends React.Component
             },
             body: JSON.stringify(stringID)
         };
-		
-		console.log(options);
-		
+				
 		fetch('http://localhost:3001/RemoveFromJSON', options)
-		.then((response) => response.json())
-		.then((jsonObj) => 
+		.then(response => response.json())
+		.then(data => 
 		{
-			;
+			if (data.successful = "true")
+			{
+				window.location.reload(true);
+			}
 		});
 	}
 
 	componentDidMount()
 	{
+		ProductOBJ = new Object();
+		
 		fetch('http://localhost:3001/GetJSON')
 		.then((response) => response.json())
 		.then((jsonObj) => 
@@ -101,6 +105,7 @@ class JSONList extends React.Component
 			{
 					if(TagList.includes(eachIteration.tag))
 					{
+						
 					}
 					else
 					{
@@ -137,17 +142,17 @@ class JSONList extends React.Component
 	}
 
 	render()
-	{			
-		let menuItems = [];
-		let temporaryArray = [];
-		let TemporaryArray2 = [];
+	{	
+		var menuItems = [];
+		var temporaryArray = [];
+		var TemporaryArray2 = [];
 		
-		for (let i = 0; i < Object.keys(ProductOBJ).length; i++)
+		for (let i = 0; i < Object.keys(this.state.StateArrayProductOBJ).length; i++)
 		{
 			var randomColour = GenerateRandomColour();
 			temporaryArray = [];
 			TemporaryArray2 = [];
-			ProductOBJ[i].map((eachIteration, index) =>
+			this.state.StateArrayProductOBJ[i].map((eachIteration, index) =>
 			{
 				if (index == 0)
 				{
@@ -156,7 +161,7 @@ class JSONList extends React.Component
 								
 				if (index != 0)
 				{
-					//console.log(eachIteration);
+					console.log(eachIteration);
 					temporaryArray.push(
 						<Card style={{marginBottom: "25px", backgroundColor: randomColour}}>
 							<CardContent>
@@ -181,7 +186,7 @@ class JSONList extends React.Component
 			TemporaryArray2.push
 			(
 				<div style={{backgroundColor: "rgba(238,238,238,0.5)", marginLeft: "10px", borderRadius: "15px"}}>
-					<div style={{textAlign: "left", marginLeft: "10px", marginRight: "10px", fontFamily: "robotoLight"}}> {ProductOBJ[i][1].tag.toUpperCase()} </div>
+					<div style={{textAlign: "left", marginLeft: "10px", marginRight: "10px", fontFamily: "robotoLight"}}> {this.state.StateArrayProductOBJ[i][1].tag.toUpperCase()} </div>
 					<div style={{display: "flex", flexDirection: "column", height: "500px", width: "200px", overflowY: "auto", marginLeft: "10px", marginRight: "10px"}}> 
 					{
 						temporaryArray.map((eachIteration) =>
@@ -194,7 +199,6 @@ class JSONList extends React.Component
 			)
 
 			menuItems.push(TemporaryArray2);
-			
 		}
 		return(
 				<div>

@@ -16,24 +16,6 @@ function onServerStart()
     console.log("Server Started");
 }
 
-var newJSON = 
-{
-	"heading": "React Circular Slider",
-	"description": "Use an interactive slider in React",
-	"link": "https://www.npmjs.com/package/@fseehawer/react-circular-slider",
-	"status": "3",
-	"tag": "reactnew"
-};
-
-//data.List.push(newJSON);
-//console.log(data.List);
-
-//json = JSON.stringify(data, null, "\t");
-//fs.writeFile('DevOpsTracker.json', json, function(err, result) 
-//{
-//     if(err) console.log('error', err);
-//});
-
 app.get("/GetJSON", onJSONStart);
 
 function onJSONStart(req, res)
@@ -47,11 +29,11 @@ app.post("/RemoveFromJSON", removeFromJSON);
 
 function removeFromJSON(req, res)
 {
-	sentValue = req.body.Heading;
+	sentValue = req.body.heading;
 	
-	console.log(req.body.Heading)
-	let rawdata1 = fs.readFileSync('DevOpsTracker.json');
-	let data = JSON.parse(rawdata1);
+	console.log(req.body.heading)
+	var rawdata1 = fs.readFileSync('DevOpsTracker.json');
+	var data = JSON.parse(rawdata1);
 		
 	data.List = data.List.filter(RemoveItemFromList);
 	
@@ -66,7 +48,8 @@ function removeFromJSON(req, res)
 	fs.writeFileSync('DevOpsTracker.json', JSON.stringify(data, null, "\t"));
 	//let rawdata2 = fs.readFileSync('DevOpsTracker.json');
 	//res.send(rawdata2);
-	res.sendStatus(200);
+	//res.sendStatus(200);
+	res.send({successful: "true"});
 }
 
 function RemoveItemFromList(eachValue)
@@ -77,3 +60,29 @@ function RemoveItemFromList(eachValue)
 	}
 }
 
+app.post("/AddToJSON", AddToJSON);
+
+function AddToJSON(req, res)
+{
+	var storeValue = req.body;
+	
+	var newJSON = 
+	{
+		"heading": req.body.heading,
+		"description": req.body.description,
+		"link": req.body.link,
+		"status": req.body.status,
+		"tag": req.body.tag
+	};
+
+	var rawdata1 = fs.readFileSync('DevOpsTracker.json');
+	var data = JSON.parse(rawdata1);
+		
+	data.List.push(rawdata1);
+
+	json = JSON.stringify(data, null, "\t");
+	fs.writeFile('DevOpsTracker.json', json, function(err, result) 
+	{
+	     if(err) console.log('error', err);
+	});
+}
