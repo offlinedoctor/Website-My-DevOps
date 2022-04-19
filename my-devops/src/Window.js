@@ -53,13 +53,13 @@ class Window extends React.Component
 	UpdateJSONList()
 	{
 		var newJSON = 
-		{
+		({
 			heading: this.state.heading,
 			description: this.state.description,
 			link: this.state.link,
 			status: this.state.status,
 			tag: this.state.tag
-		}
+		});
 		
 		console.log(newJSON);
 		
@@ -91,7 +91,7 @@ class Window extends React.Component
 					<Button onClick={this.ShowDialog} variant="contained" style={{marginLeft: "15px"}}>+</Button>
 				</h1>
 				<Modal open={this.state.openModal} style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-					<div style={{background: "white", padding: "50px"}}>
+					<div style={{borderRadius: "15px", background: "white", padding: "50px"}}>
 						<div  style={{display: "flex", flexDirection: "column"}}>
 							<TextField onChange={this.OnValueChange} id="heading" label="Heading" variant="outlined" />
 							<TextField onChange={this.OnValueChange} id="desc" label="Description" variant="outlined" />
@@ -99,7 +99,7 @@ class Window extends React.Component
 							<TextField onChange={this.OnValueChange} id="status" label="Status" variant="outlined" />
 							<TextField onChange={this.OnValueChange} id="tag" label="Tag" variant="outlined" />
 						</div>
-						<div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+						<div style={{display: "flex", alignItems: "center", justifyContent: "center", paddingTop: "15px"}}>
 							<Button onClick={this.UpdateJSONList} variant="contained">
 								Confirm
 							</Button>
