@@ -15,10 +15,55 @@ class Window extends React.Component
 		this.state = 
 		{
 			openModal: false,
-			handleClose: "false"
+			heading: "",
+			description: "",
+			link: "",
+			status: "",
+			tag: ""
 		}
 		
 		this.ShowDialog = this.ShowDialog.bind(this);
+		this.UpdateJSONList = this.UpdateJSONList.bind(this);
+		this.OnValueChange= this.OnValueChange.bind(this);
+	}
+	
+    OnValueChange(event)
+    {
+		//event.target.value.toString();
+		switch(event.target.id.toString())
+		{
+			case "heading":
+				this.setState({heading: event.target.value})
+				break;
+			case "desc":
+				this.setState({description: event.target.value})
+				break;
+			case "link":
+				this.setState({link: event.target.value})
+				break;
+			case "status":
+				this.setState({status: event.target.value})
+				break;
+			case "tag":
+				this.setState({tag: event.target.value})
+				break;
+		}
+    }
+	
+	UpdateJSONList()
+	{
+		var newJSON = 
+		{
+			heading: this.state.heading,
+			description: this.state.description,
+			link: this.state.link,
+			status: this.state.status,
+			tag: this.state.tag
+		}
+		
+		console.log(newJSON);
+		
+		this.ShowDialog();
 	}
 	
 	ShowDialog()
@@ -48,13 +93,14 @@ class Window extends React.Component
 				<Modal open={this.state.openModal} style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
 					<div style={{background: "white", padding: "50px"}}>
 						<div  style={{display: "flex", flexDirection: "column"}}>
-							<TextField id="outlined-basic" label="Heading" variant="outlined" />
-							<TextField id="outlined-basic" label="Description" variant="outlined" />
-							<TextField id="outlined-basic" label="Link" variant="outlined" />
-							<TextField id="outlined-basic" label="Status" variant="outlined" />
+							<TextField onChange={this.OnValueChange} id="heading" label="Heading" variant="outlined" />
+							<TextField onChange={this.OnValueChange} id="desc" label="Description" variant="outlined" />
+							<TextField onChange={this.OnValueChange} id="link" label="Link" variant="outlined" />
+							<TextField onChange={this.OnValueChange} id="status" label="Status" variant="outlined" />
+							<TextField onChange={this.OnValueChange} id="tag" label="Tag" variant="outlined" />
 						</div>
 						<div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-							<Button onClick={this.ShowDialog} variant="contained">
+							<Button onClick={this.UpdateJSONList} variant="contained">
 								Confirm
 							</Button>
 							<Button onClick={this.ShowDialog} variant="contained">
