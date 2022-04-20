@@ -6,15 +6,18 @@ let cors = require("cors");
 app.use(cors());
 var bodyParser = require('body-parser');
 app.use(bodyParser());
-
+app.use(express.static(path.join(__dirname, "..", "build")));
+app.use(express.static("public"));
+ 
 var sentValue;
 
-var server = app.listen(3001, onServerStart);
+var server = app.listen(3000, onServerStart);
 
 function onServerStart()
 {
     console.log("Server Started");
 }
+
 
 app.get("/GetJSON", onJSONStart);
 

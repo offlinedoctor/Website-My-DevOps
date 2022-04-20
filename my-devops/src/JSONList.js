@@ -16,7 +16,7 @@ var ProductOBJ = new Object();
 
 async function FetchJSON()
 {
-	fetch('http://localhost:3001/GetJSON')
+	fetch('/GetJSON')
 	.then((response) => response.json())
 	.then((jsonObj) => 
 	{
@@ -80,7 +80,7 @@ class JSONList extends React.Component
             body: JSON.stringify(stringID)
         };
 				
-		fetch('http://localhost:3001/RemoveFromJSON', options)
+		fetch('/RemoveFromJSON', options)
 		.then(response => response.json())
 		.then(data => 
 		{
@@ -95,7 +95,7 @@ class JSONList extends React.Component
 	{
 		ProductOBJ = new Object();
 		
-		fetch('http://localhost:3001/GetJSON')
+		fetch('/GetJSON')
 		.then((response) => response.json())
 		.then((jsonObj) => 
 		{			

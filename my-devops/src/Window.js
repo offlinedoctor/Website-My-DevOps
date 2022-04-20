@@ -71,7 +71,7 @@ class Window extends React.Component
             body: JSON.stringify(newJSON)
         };
 				
-		fetch('http://localhost:3001/AddToJSON', options)
+		fetch('/AddToJSON', options)
 		.then(response => response.json())
 		.then(data => 
 		{
