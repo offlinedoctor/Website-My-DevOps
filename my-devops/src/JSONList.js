@@ -161,7 +161,6 @@ class JSONList extends React.Component
 								
 				if (index != 0)
 				{
-					console.log(eachIteration);
 					temporaryArray.push(
 						<Card style={{marginBottom: "25px", backgroundColor: randomColour}}>
 							<CardContent>

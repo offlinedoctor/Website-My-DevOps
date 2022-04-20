@@ -61,9 +61,28 @@ class Window extends React.Component
 			tag: this.state.tag
 		});
 		
-		console.log(newJSON);
+		const options =
+		{
+            method: "POST",
+            headers:
+            {
+                "Content-Type" : "application/JSON"
+            },
+            body: JSON.stringify(newJSON)
+        };
+				
+		fetch('http://localhost:3001/AddToJSON', options)
+		.then(response => response.json())
+		.then(data => 
+		{
+			if (data.successful = "true")
+			{
+				this.ShowDialog();
+				window.location.reload(true);
+			}
+		});
 		
-		this.ShowDialog();
+		//console.log(options);
 	}
 	
 	ShowDialog()

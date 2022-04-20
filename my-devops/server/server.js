@@ -64,6 +64,8 @@ app.post("/AddToJSON", AddToJSON);
 
 function AddToJSON(req, res)
 {
+	console.log(req.body);
+	
 	var storeValue = req.body;
 	
 	var newJSON = 
@@ -78,11 +80,13 @@ function AddToJSON(req, res)
 	var rawdata1 = fs.readFileSync('DevOpsTracker.json');
 	var data = JSON.parse(rawdata1);
 		
-	data.List.push(rawdata1);
+	data.List.push(newJSON);
 
 	json = JSON.stringify(data, null, "\t");
 	fs.writeFile('DevOpsTracker.json', json, function(err, result) 
 	{
 	     if(err) console.log('error', err);
 	});
+	
+	res.send({successful: "true"});
 }
